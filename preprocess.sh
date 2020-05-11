@@ -7,6 +7,36 @@ function gdrive_download () {
   rm -rf /tmp/cookies.txt
 }
 
+function help() {
+    cmds=(
+    dump-raw-wiki
+    dump-raw-korquad
+    dump-raw-nsmc
+    dump-blog
+    dump-raw
+    dump-word-embeddings
+    dump-sentence-embeddings
+    dump-tokenized
+    dump-processed
+    process-wiki
+    process-nsmc
+    process-korquad
+    mecab-tokenize
+    process-jamo
+    space-correct
+    soy-tokenize
+    komoran-tokenize
+    okt-tokenize
+    hannanum-tokenize
+    khaiii-tokenize
+    bert-tokenize
+    mecab-user-dic
+    make-bert-vocab)
+
+    echo -e "You can use the following commands.\n"
+    printf '%s\n' "${cmds[@]}"
+}
+
 case $COMMAND in
     dump-raw-wiki)
         echo "download ko-wikipedia..."
@@ -212,5 +242,8 @@ case $COMMAND in
             --input_path /notebooks/embedding/data/processed/processed_wiki_ko.txt \
             --vocab_path /notebooks/embedding/data/processed/bert.vocab
         mv sentpiece* /notebooks/embedding/data/processed
+        ;;
+    *)
+        help
         ;;
 esac
